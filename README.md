@@ -1,24 +1,39 @@
 # motion-fileutils
 
-TODO: Write a gem description
+FileUtils for RubyMotion  
+The aim is to implement methods in Ruby FileUtils.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+    In your Gemfile:
 
+    ```ruby
     gem 'motion-fileutils'
+    ```
 
 And then execute:
 
+    ```sh
     $ bundle
+    ```
 
 Or install it yourself as:
 
+    ```sh
     $ gem install motion-fileutils
+    ```
 
+And write require line to your Rakefile
+
+    In your Rakefile
+    
+    ```ruby
+    require 'motion-fileutils'
+    ```
+    
+    
 ## Usage
 
-TODO: Write usage instructions here
 
 ## Contributing
 
@@ -27,3 +42,5 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+I'm not good at English. To improve my English is welcome.
