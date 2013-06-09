@@ -1,4 +1,6 @@
 describe "Motion::FileUtils" do
+
+
   before do
     @path = "abc".cache
     @sub_path = "abc/def".cache
@@ -71,6 +73,21 @@ describe "Motion::FileUtils" do
       @path.exists?.should == false
     end
   
+  end
+  
+  describe "touch" do
+  
+    after do
+      Motion::FileUtils.rm "foo".cache
+    end
+  
+    it "should be created" do
+      path = "foo".cache
+      Motion::FileUtils.touch path
+      File.exists?(path).should == true
+      File.directory?(path).should == false
+    end
+
   end
   
 end

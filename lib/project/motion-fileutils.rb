@@ -60,5 +60,25 @@ module Motion
     private_module_function :mkdir_with_intermediate
   
   
+    def touch(list, options = {})
+      t = options[:mtime]
+      created = nocreate = options[:nocreate]
+      list = [list] unless list.is_a? Array
+      list.each do |path|
+        begin
+          File.utime(t, t, path)
+        rescue Errno::ENOENT
+          raise if created
+          File.open(path, 'a') {
+            ;
+          }
+          created = true
+          retry if t
+        end
+      end
+    end
+    module_function :touch
+  
+
   end
 end
