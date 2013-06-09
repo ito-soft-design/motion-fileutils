@@ -5,31 +5,31 @@ The aim is to implement methods in Ruby FileUtils.
 
 ## Installation
 
-    In your Gemfile:
+In your Gemfile:
 
-    ```ruby
-    gem 'motion-fileutils'
-    ```
+```ruby
+gem 'motion-fileutils'
+```
 
 And then execute:
 
-    ```sh
-    $ bundle
-    ```
+```sh
+$ bundle
+```
 
 Or install it yourself as:
 
-    ```sh
-    $ gem install motion-fileutils
-    ```
+```sh
+$ gem install motion-fileutils
+```
 
 And write require line to your Rakefile
 
-    In your Rakefile
+In your Rakefile
     
-    ```ruby
-    require 'motion-fileutils'
-    ```
+```ruby
+require 'motion-fileutils'
+```
     
     
 ## Usage
