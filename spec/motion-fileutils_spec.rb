@@ -56,16 +56,21 @@ describe "Motion::FileUtils" do
     
   end
   
-  it "should remove a directory" do
-    Motion::FileUtils.mkdir @path
-    Motion::FileUtils.rm @path
-    @path.exists?.should == false
-  end
   
-  it "should remove a directory" do
-    Motion::FileUtils.mkdir @path
-    Motion::FileUtils.remove @path
-    @path.exists?.should == false
+  describe "rm" do
+  
+    it "should remove a directory" do
+      Motion::FileUtils.mkdir @path
+      Motion::FileUtils.rm @path
+      @path.exists?.should == false
+    end
+
+    it "should remove a directory" do
+      Motion::FileUtils.mkdir @path
+      Motion::FileUtils.remove @path
+      @path.exists?.should == false
+    end
+  
   end
   
 end
