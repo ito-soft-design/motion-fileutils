@@ -143,6 +143,60 @@ describe "Motion::FileUtils" do
     
   end
   
+  describe "cp" do
+    before do
+      File.open("foo".cache, "w") do |f|
+        f.write("foo")
+      end
+    end
+    
+    after do
+      Motion::FileUtils.rm "foo".cache
+      Motion::FileUtils.rm "bar".cache
+      Motion::FileUtils.rm "baz".cache
+    end
+    
+    it "should be copied to 'bar'" do
+      Motion::FileUtils.cp "foo".cache, "bar".cache
+      File.read("foo".cache).should == "foo"
+      File.read("bar".cache).should == "foo"
+    end
+    
+    it "should be overwrite to 'bar' if it exists." do
+      File.open("bar".cache, "w") do |f|
+        f.write("bar")
+      end
+      Motion::FileUtils.cp "foo".cache, "bar".cache
+      File.read("bar".cache).should == "foo"
+      File.exists?("foo".cache).should == true
+    end
+    
+    it "should be copy multi files if distination is directory." do
+      Motion::FileUtils.touch "bar".cache
+      Motion::FileUtils.mkdir "baz".cache
+      
+      Motion::FileUtils.cp ["foo".cache, "bar".cache], "baz".cache
+      File.exists?("baz/foo".cache).should == true
+      File.exists?("baz/bar".cache).should == true
+    end
+    
+    it "should raise Errno::ENOTDIR if distination is file." do
+      Motion::FileUtils.touch "bar".cache
+      Motion::FileUtils.touch "baz".cache
+      
+      should.raise(Errno::ENOTDIR) { Motion::FileUtils.cp ["foo".cache, "bar".cache], "baz".cache }
+    end
+    
+=begin
+    it "should be copied to 'bar'" do
+      Motion::FileUtils.copy "foo".cache, "bar".cache
+      File.exists?("foo".cache).should == false
+      File.exists?("bar".cache).should == true
+    end
+=end
+    
+  end
+  
 end
 
 

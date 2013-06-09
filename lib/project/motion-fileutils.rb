@@ -101,6 +101,29 @@ module Motion
     alias move mv
     module_function :move
 
+    def cp(src, dest, options = {})
+      error = Pointer.new(:object)
+      m = NSFileManager.defaultManager
+      if File.file?(dest) || !File.exists?(dest)
+        raise Errno::ENOTDIR if src.is_a?(Array) && File.file?(dest)
+        rm dest if File.file?(dest)
+        r = m.copyItemAtPath src, toPath:dest, error:error
+#p error, r unless r
+      else
+        src = [src] unless src.is_a? Array
+        src.each do |path|
+          r = m.copyItemAtPath path, toPath:File.join(dest, File.basename(path)), error:error
+#p error, r unless r
+        end
+      end
+    end
+    module_function :cp
+  
+=begin # NSObject#copy was already exists.
+    alias copy cp
+    module_function :copy
+=end
+
   
   end
 end
